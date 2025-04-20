@@ -1,0 +1,48 @@
+{
+  "name": "fml-sdk",
+  "version": "0.1.0",
+  "description": "Freeform Markup Language (FML) SDK for structured AI prompting using XML-style tags and variables.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "dev": "tsc --watch",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write ."
+  },
+  "keywords": [
+    "fml",
+    "prompt",
+    "prompting",
+    "ai",
+    "llm",
+    "markup",
+    "sdk",
+    "openai",
+    "anthropic",
+    "xml"
+  ],
+  "author": "David Pichsenmeister",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/fml-sdk"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.2.0",
+    "vitest": "^1.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0"
+  },
+  "dependencies": {
+    "xml2js": "^0.5.0",
+    "mustache": "^4.2.0"
+  }
+}
