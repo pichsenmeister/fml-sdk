@@ -1,0 +1,4 @@
+This file contains a nested include with variables
+<tag>
+<include src="include-with-var.fml"/>
+</tag>

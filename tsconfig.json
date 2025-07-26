@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es2020", // Or a newer version like es2022, depending on your Node.js version
+    "module": "commonjs", // Matches your use of `require` (implicitly via `path`) and Jest's default
+    "strict": true, // Enables all strict type-checking options
+    "esModuleInterop": true, // Allows default imports from CommonJS modules
+    "skipLibCheck": true, // Skip type checking of declaration files
+    "forceConsistentCasingInFileNames": true, // Disallow inconsistently-cased references to the same file.
+    "resolveJsonModule": true, // Allows importing .json files
+    "outDir": "./dist", // Or your preferred output directory for compiled JS
+    "rootDir": "./",    // Specifies the root directory of input files
+    "types": ["node", "vitest/globals"] // Important for recognizing global types like `describe` and `process`
+  },
+  "include": [
+    "src/**/*.ts", // Include all .ts files in the src directory
+    "test/**/*.ts"  // Include all .ts files in the test directory
+  ],
+  "exclude": ["node_modules", "dist"] // Exclude node_modules and the output directory
+}

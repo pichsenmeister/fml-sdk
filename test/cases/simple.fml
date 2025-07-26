@@ -1,1 +1,4 @@
 Welcome, {{ name }}! Let me walk you through the basics.
+<instructions>
+some instructions
+</instructions>

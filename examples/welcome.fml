@@ -1,1 +1,1 @@
-i<include src="nested-greeting.fml" />
+<include src="nested-greeting.fml">this will be replaced</include>

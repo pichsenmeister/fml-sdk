@@ -1,3 +1,5 @@
+This is a simple message in with out tags.
 <system>You are an onboarding assistant. Help new users get started.</system>
 <user>Hi, I'm {{ name }} and I just signed up.</user>
 <assistant><include src="welcome.fml" /></assistant>
+And more text without tags.
