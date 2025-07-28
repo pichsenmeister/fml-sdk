@@ -1,4 +1,4 @@
-This file contains an include
+This file contains an include in different xml formats
 <include src="no-tags.fml"></include>
 <include src="no-tags.fml" />
 <include src="no-tags.fml"/>

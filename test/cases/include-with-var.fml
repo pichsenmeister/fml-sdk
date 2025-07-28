@@ -1,2 +1,2 @@
 This file contains an include
-<include src="simple.fml"/>
+<include src="includes/hello.fml"/>

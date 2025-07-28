@@ -1,6 +1,5 @@
-// fml-sdk/src/parser.ts
 import fs from 'fs/promises';
-import path from 'path'; // Import path module
+import path from 'path';
 import mustache from 'mustache';
 
 interface FMLParseOptions {
@@ -87,7 +86,6 @@ export async function parseFML(
 
 interface StackFrame {
   getFileName(): string | null;
-  // Add other StackFrame methods if needed, e.g., getLineNumber, getFunctionName
 }
 
 function _getCallerFile(): string | undefined {

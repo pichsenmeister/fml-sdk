@@ -1,13 +1,11 @@
-import { parseFML, toOpenAI } from '../src'
-import path from 'path'
+import { parseFML } from '../src'
 
 async function main() {
-  const messages = await parseFML(__dirname + '/onboarding-prompt.fml', {
+  const message = await parseFML('./onboarding-prompt.fml', {
     variables: { name: 'David' }
   })
 
-  const openAIFormat = toOpenAI(messages)
-  console.log(JSON.stringify(openAIFormat, null, 2))
+  console.log(message)
 }
 
 main().catch(console.error)
