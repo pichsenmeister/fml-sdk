@@ -5,11 +5,9 @@ Freeform Markup Language (FML) is a lightweight, expressive markup language desi
 
 ## Features
 
-- ✅ XML-style tags for roles: `<system>`, `<user>`, `<assistant>`
 - 🧩 Mustache-style variable interpolation: `{{ name }}`
 - 🔁 `<include>` tag for nesting other `.fml` files
 - 🧪 Simple, testable, and transformable prompt formats
-- ⚙️ Output ready for OpenAI-compatible APIs (ChatML-style)
 
 ## 📦 Installation
 
@@ -23,12 +21,8 @@ npm install fml-sdk
 FML uses angle-bracketed XML-style tags:
 
 Tag | Purpose
-`<system>` | Sets the assistant’s behavior or context
-`<user>` | Simulates user input
-`<assistant>` | Represents model responses
 `<include src="..."/>` | Imports other `.fml` files
 `<comment>` | Invisible to the model, used for internal docs
-
 
 ```xml
 <system>
@@ -47,27 +41,16 @@ Tag | Purpose
 ### Variables
 Use `{{ variable_name }}` syntax for dynamic substitution:
 
-```xml
-<user>
-  Tell me a story about {{ animal }} who learns to {{ skill }}.
-</user>
 ```
-
-### Attributes
-Tags can have attributes for additional metadata:
-
-```xml
-How do I say "hello" in {{ language }}?
+Tell me a story about {{ animal }} who learns to {{ skill }}.
 ```
-
-## Advanced Features
 
 ###  File Composition
 Modularize prompts using `<include>`:
 
 ```xml
 <include src="common/system-prompt.fml" />
-<user>Hello there!</user>
+Hello there!
 ```
 
 ### Conditional Logic (future support)
@@ -82,27 +65,12 @@ Modularize prompts using `<include>`:
 
 ## Example
 
-```xml
-<!-- onboarding-prompt.fml -->
-<system>
-  You are an onboarding assistant helping users learn how to use the app.
-</system>
-<user>
-  Hi, I'm {{ name }} and I just signed up.
-</user>
-<assistant>
-  Welcome, {{ name }}! Let me walk you through the basics.
-</assistant>
-```
-
 ```ts
-import { parseFML, toOpenAI } from 'fml-sdk'
+import { parseFML } from 'fml-sdk'
 
-const messages = await parseFML('onboarding-prompt.fml', {
+const message = await parseFML('onboarding-prompt.fml', {
   variables: { name: 'David' }
 })
-
-const formatted = toOpenAI(messages)
 ```
 
 ## File Format
