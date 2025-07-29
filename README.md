@@ -23,7 +23,6 @@ FML uses angle-bracketed XML-style tags:
 | Tag | Purpose |
 | -- | -- |
 | `<include src="..."/>` | Imports other `.fml` files |
-| `<comment>` | Invisible to the model, used for internal docs |
 
 ```xml
 <system>
