@@ -20,9 +20,10 @@ npm install fml-sdk
 ### Tags
 FML uses angle-bracketed XML-style tags:
 
-Tag | Purpose
-`<include src="..."/>` | Imports other `.fml` files
-`<comment>` | Invisible to the model, used for internal docs
+| Tag | Purpose |
+| -- | -- |
+| `<include src="..."/>` | Imports other `.fml` files |
+| `<comment>` | Invisible to the model, used for internal docs |
 
 ```xml
 <system>
@@ -52,16 +53,6 @@ Modularize prompts using `<include>`:
 <include src="common/system-prompt.fml" />
 Hello there!
 ```
-
-### Conditional Logic (future support)
-
-```xml
-<if condition="{{ is_admin }}">
-  <user>You have admin privileges.</user>
-</if>
-```
-
-(Not implemented in v0.1, but reserved for future extensions.)
 
 ## Example
 
