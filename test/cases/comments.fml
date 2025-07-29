@@ -1,0 +1,7 @@
+The comment tag is ignored.
+<comment>This is a comment</comment>
+<info>
+Everything else should still be visible.
+<comment>This is a comment</comment>
+</info>
+

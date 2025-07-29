@@ -68,4 +68,14 @@ This is a tag with instructions.
 </instructions>`
     expect(message).toEqual(expectedMessage)
   })
+
+  it('ignores comments tags', async () => {
+    const message = await parseFML('./cases/comments.fml')
+
+    const expectedMessage = `The comment tag is ignored.
+<info>
+Everything else should still be visible.
+</info>`
+    expect(message).toEqual(expectedMessage)
+  })
 })
