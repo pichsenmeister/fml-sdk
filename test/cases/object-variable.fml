@@ -1,0 +1,11 @@
+Here is a JSON object:
+{{ myObject}}
+
+Here we are accessing values of the object:
+{{ person.name }}: {{ person.age }}
+
+Here's an array:
+{{ myObject.tags }}
+
+Here we are accessing an array value:
+{{ myObject.tags.0 }}

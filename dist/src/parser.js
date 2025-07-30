@@ -7,6 +7,7 @@ exports.parseFML = parseFML;
 const promises_1 = __importDefault(require("fs/promises"));
 const path_1 = __importDefault(require("path"));
 const mustache_1 = __importDefault(require("mustache"));
+const url_1 = require("url");
 /**
  * Parses an FML (Freeform Markup Language) file by reading its content,
  * processing <include src="..."/> tags recursively, substituting variables
@@ -17,6 +18,7 @@ const mustache_1 = __importDefault(require("mustache"));
  * Paths for `<include>` tags are always resolved relative to their parent FML file.
  *
  * @param filePath The absolute or relative path to the .fml file.
+ * @param variables An object containing key-value pairs for variable substitution.
  * @param options Optional parameters, including variables for substitution.
  * @param _currentlyProcessingPaths Internal set to track files being processed
  *                                  to detect circular dependencies. Should not be
@@ -25,8 +27,11 @@ const mustache_1 = __importDefault(require("mustache"));
  * @throws Will throw an error if the file cannot be read, if Mustache rendering fails,
  *         or if a circular dependency is detected.
  */
-async function parseFML(relativePath, options, _currentlyProcessingPaths = new Set()) {
-    const callerFile = _getCallerFile();
+async function parseFML(relativePath, variables, options, _currentlyProcessingPaths = new Set()) {
+    let callerFile = _getCallerFile();
+    if (callerFile?.startsWith('file:')) {
+        callerFile = (0, url_1.fileURLToPath)(callerFile);
+    }
     if (!callerFile && !options?.baseDir) {
         throw new Error('Could not determine the caller file for resolving relative paths. Please provide a baseDir option or ensure the caller file is accessible.');
     }
@@ -49,13 +54,22 @@ async function parseFML(relativePath, options, _currentlyProcessingPaths = new S
         const relativeSrcPath = match[1];
         const directoryOfCurrentFile = path_1.default.dirname(absoluteFilePath);
         const includedFilePath = path_1.default.resolve(directoryOfCurrentFile, relativeSrcPath);
-        const includedContent = await parseFML(includedFilePath, options, new Set(_currentlyProcessingPaths));
+        const includedContent = await parseFML(includedFilePath, variables, options, new Set(_currentlyProcessingPaths));
         currentContent = currentContent.replace(includeTag, includedContent);
     }
     // After all includes are processed, substitute variables in the assembled content.
     let finalContent = currentContent;
-    if (options?.variables && Object.keys(options.variables).length > 0) {
-        finalContent = mustache_1.default.render(currentContent, options.variables, {}, { escape: (text) => text });
+    if (variables && Object.keys(variables).length > 0) {
+        finalContent = mustache_1.default.render(currentContent, variables, {}, {
+            escape: (value) => {
+                // If the value is an object, stringify it as pretty-printed JSON
+                if (typeof value === 'object' && value !== null) {
+                    return JSON.stringify(value, null, 2);
+                }
+                // For non-objects (strings, numbers, etc.), just convert to string without escaping
+                return String(value);
+            },
+        });
     }
     _currentlyProcessingPaths.delete(absoluteFilePath);
     return finalContent;
