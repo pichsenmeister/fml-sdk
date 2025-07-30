@@ -76,7 +76,8 @@ This is a tag with instructions.
 				id: 123,
 				status: 'active',
 				tags: ['a', 'b']
-			}
+			},
+			person: { name: 'Alice', age: 30 }
 		});
 
 		const expectedMessage = `Here is a JSON object:
@@ -87,7 +88,19 @@ This is a tag with instructions.
     "a",
     "b"
   ]
-}`;
+}
+
+Here we are accessing values of the object:
+Alice: 30
+
+Here's an array:
+[
+  "a",
+  "b"
+]
+
+Here we are accessing an array value:
+a`;
 		expect(message).toEqual(expectedMessage);
 	});
 
