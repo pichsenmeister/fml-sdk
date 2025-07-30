@@ -36,11 +36,13 @@
   "devDependencies": {
     "@types/mustache": "^4.2.6",
     "@types/node": "^20.17.57",
+    "@types/xml2js": "^0.4.14",
     "globals": "^16.3.0",
     "typescript": "^5.8.3",
     "vitest": "^1.0.0"
   },
   "dependencies": {
-    "mustache": "^4.2.0"
+    "mustache": "^4.2.0",
+    "xml2js": "^0.6.2"
   }
 }

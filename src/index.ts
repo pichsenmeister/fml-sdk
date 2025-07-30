@@ -1,2 +1,2 @@
-import { parseFML } from './parser'
-export { parseFML }
+import { parseFML } from './parser';
+export { parseFML };
